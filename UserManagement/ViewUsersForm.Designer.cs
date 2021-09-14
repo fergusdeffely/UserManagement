@@ -49,7 +49,7 @@ namespace UserManagement
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.panelLoggedInUser = new System.Windows.Forms.Panel();
-            this.button1 = new System.Windows.Forms.Button();
+            this.buttonLogout = new System.Windows.Forms.Button();
             this.panelUserInfo = new System.Windows.Forms.Panel();
             this.labelAdministrator = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxUserImage)).BeginInit();
@@ -260,7 +260,7 @@ namespace UserManagement
             // 
             this.panelLoggedInUser.BackColor = System.Drawing.Color.LightSteelBlue;
             this.panelLoggedInUser.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panelLoggedInUser.Controls.Add(this.button1);
+            this.panelLoggedInUser.Controls.Add(this.buttonLogout);
             this.panelLoggedInUser.Controls.Add(this.label2);
             this.panelLoggedInUser.Controls.Add(this.label1);
             this.panelLoggedInUser.Location = new System.Drawing.Point(397, 343);
@@ -268,14 +268,15 @@ namespace UserManagement
             this.panelLoggedInUser.Size = new System.Drawing.Size(308, 57);
             this.panelLoggedInUser.TabIndex = 18;
             // 
-            // button1
+            // buttonLogout
             // 
-            this.button1.Location = new System.Drawing.Point(208, 15);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(88, 30);
-            this.button1.TabIndex = 2;
-            this.button1.Text = "Logout";
-            this.button1.UseVisualStyleBackColor = true;
+            this.buttonLogout.Location = new System.Drawing.Point(208, 15);
+            this.buttonLogout.Name = "buttonLogout";
+            this.buttonLogout.Size = new System.Drawing.Size(88, 30);
+            this.buttonLogout.TabIndex = 2;
+            this.buttonLogout.Text = "Logout";
+            this.buttonLogout.UseVisualStyleBackColor = true;
+            this.buttonLogout.Click += new System.EventHandler(this.buttonLogout_Click);
             // 
             // panelUserInfo
             // 
@@ -356,7 +357,7 @@ namespace UserManagement
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Panel panelLoggedInUser;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button buttonLogout;
         private System.Windows.Forms.Panel panelUserInfo;
         private System.Windows.Forms.Label labelAdministrator;
     }

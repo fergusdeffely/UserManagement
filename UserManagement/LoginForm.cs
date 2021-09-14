@@ -32,7 +32,7 @@ namespace UserManagement
                 List<User> userList = usersDB.GetUsers(db);
 
                 bool validCredentials = false;
-                bool userFound = false;
+                User foundUser = null;
 
                 // Check email address and password
 
@@ -42,7 +42,7 @@ namespace UserManagement
 
                     if (this.textBoxEmail.Text == user.Email)
                     {
-                        userFound = true;
+                        foundUser = user;
 
                         // Check password
                         if (this.textBoxPassword.Text == user.Password)
@@ -60,7 +60,7 @@ namespace UserManagement
 
                 // Warn user if email is not found
 
-                if (userFound == false)
+                if (foundUser == null)
                 {
                     MessageBox.Show($"The user: {this.textBoxEmail.Text} does not exist. Please try again.\n\n(If problems persist, please contact the I.T. department.)", "User not found", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
@@ -71,11 +71,13 @@ namespace UserManagement
                 {
                     this.Visible = false;
 
-                    ViewUsersForm viewUsersForm = new ViewUsersForm();
+                    ViewUsersForm viewUsersForm = new ViewUsersForm(db, foundUser);
                     viewUsersForm.ShowDialog();
 
                     this.Visible = true;
                 }
+
+                db.CloseConnection();
             }
         }
     }
