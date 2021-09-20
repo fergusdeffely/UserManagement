@@ -65,6 +65,7 @@ namespace UserManagement
             this.listBoxUsers.Name = "listBoxUsers";
             this.listBoxUsers.Size = new System.Drawing.Size(182, 199);
             this.listBoxUsers.TabIndex = 0;
+            this.listBoxUsers.SelectedIndexChanged += new System.EventHandler(this.listBoxUsers_SelectedIndexChanged);
             // 
             // labelName
             // 

@@ -148,6 +148,7 @@ namespace UserManagement
             this.buttonBrowseImage.TabIndex = 17;
             this.buttonBrowseImage.Text = "...";
             this.buttonBrowseImage.UseVisualStyleBackColor = true;
+            this.buttonBrowseImage.Click += new System.EventHandler(this.buttonBrowseImage_Click);
             // 
             // textBoxImageLocation
             // 

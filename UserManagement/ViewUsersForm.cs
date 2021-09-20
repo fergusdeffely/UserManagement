@@ -27,24 +27,38 @@ namespace UserManagement
 
         private void buttonEdit_Click(object sender, EventArgs e)
         {
+            // TODO: Find currently selected user
+            //       Launch the AddEditUserForm in 'Add' mode (passing selected user as param)
+
             AddEditUserForm editUserForm = new AddEditUserForm();
             editUserForm.ShowDialog();
         }
 
         private void buttonLogout_Click(object sender, EventArgs e)
         {
-            MessageBox.Show(this.currentUser.DescriptionString());
+            // TODO: Close this form
+            //       Reset currentUser on LoginForm
         }
 
         private void buttonAdd_Click(object sender, EventArgs e)
         {
-
+            // TODO: Launch the AddEditUserForm in 'Add' mode
         }
+
+        private void buttonDelete_Click(object sender, EventArgs e)
+        {
+            // TODO: Find currently selected user
+            //       Prompt to verify Delete
+            //       if Yes: Delete from DB
+        }        
 
         private void ViewUsersForm_Load(object sender, EventArgs e)
         {
             RefreshList();
             RefreshUserDetails(this.listBoxUsers.SelectedItem as User);
+
+            // TODO: RefreshControls()
+            // TODO: RefreshLoggedInUserDetails()
         }
 
         private void RefreshList()
@@ -56,7 +70,10 @@ namespace UserManagement
 
             this.listBoxUsers.Items.Clear();
             this.listBoxUsers.Items.AddRange(userList.ToArray());
-            this.listBoxUsers.SelectedIndex = 1;
+            
+            int currentUserIndex = this.listBoxUsers.FindString(this.currentUser.ToString());
+
+            this.listBoxUsers.SelectedIndex = currentUserIndex;
         }
 
         // Populate the User Details fields given a User object.
@@ -69,6 +86,14 @@ namespace UserManagement
             this.textBoxPhone.Text = user.Phone;
             this.textBoxGroup.Text = user.Group;
             this.checkBoxAdministrator.Checked = user.IsAdmin;
+        }
+
+        private void listBoxUsers_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            User selectedUser = this.listBoxUsers.SelectedItem as User;
+
+            RefreshUserDetails(selectedUser);
+            // TODO: RefreshControls()
         }
     }
 }
