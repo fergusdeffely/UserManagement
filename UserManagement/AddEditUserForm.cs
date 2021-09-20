@@ -15,6 +15,8 @@ namespace UserManagement
         public AddEditUserForm()
         {
             InitializeComponent();
+
+            this.comboBoxGroup.SelectedItem = "Sales";
         }
     }
 }

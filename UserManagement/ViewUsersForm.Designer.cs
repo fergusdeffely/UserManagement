@@ -30,7 +30,7 @@ namespace UserManagement
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ViewUsersForm));
-            this.listBox1 = new System.Windows.Forms.ListBox();
+            this.listBoxUsers = new System.Windows.Forms.ListBox();
             this.labelName = new System.Windows.Forms.Label();
             this.labelEmail = new System.Windows.Forms.Label();
             this.labelPhone = new System.Windows.Forms.Label();
@@ -57,18 +57,14 @@ namespace UserManagement
             this.panelUserInfo.SuspendLayout();
             this.SuspendLayout();
             // 
-            // listBox1
+            // listBoxUsers
             // 
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.ItemHeight = 15;
-            this.listBox1.Items.AddRange(new object[] {
-            "Andrea Rossi",
-            "Ciara O\'Rourke",
-            "Ger Moran"});
-            this.listBox1.Location = new System.Drawing.Point(27, 65);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(182, 199);
-            this.listBox1.TabIndex = 0;
+            this.listBoxUsers.FormattingEnabled = true;
+            this.listBoxUsers.ItemHeight = 15;
+            this.listBoxUsers.Location = new System.Drawing.Point(27, 65);
+            this.listBoxUsers.Name = "listBoxUsers";
+            this.listBoxUsers.Size = new System.Drawing.Size(182, 199);
+            this.listBoxUsers.TabIndex = 0;
             // 
             // labelName
             // 
@@ -168,6 +164,7 @@ namespace UserManagement
             this.buttonAdd.TabIndex = 10;
             this.buttonAdd.Text = "Add...";
             this.buttonAdd.UseVisualStyleBackColor = true;
+            this.buttonAdd.Click += new System.EventHandler(this.buttonAdd_Click);
             // 
             // textBoxEmail
             // 
@@ -321,11 +318,12 @@ namespace UserManagement
             this.Controls.Add(this.buttonAdd);
             this.Controls.Add(this.labelUserInfo);
             this.Controls.Add(this.labelUsers);
-            this.Controls.Add(this.listBox1);
+            this.Controls.Add(this.listBoxUsers);
             this.Controls.Add(this.panelUserInfo);
             this.Name = "ViewUsersForm";
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.Text = "User Management";
+            this.Load += new System.EventHandler(this.ViewUsersForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxUserImage)).EndInit();
             this.panelLoggedInUser.ResumeLayout(false);
             this.panelLoggedInUser.PerformLayout();
@@ -338,7 +336,7 @@ namespace UserManagement
 
         #endregion
 
-        private System.Windows.Forms.ListBox listBox1;
+        private System.Windows.Forms.ListBox listBoxUsers;
         private System.Windows.Forms.Label labelName;
         private System.Windows.Forms.Label labelEmail;
         private System.Windows.Forms.Label labelPhone;

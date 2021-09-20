@@ -31,8 +31,10 @@ namespace UserManagement
 
                 List<User> userList = usersDB.GetUsers(db);
 
-                bool validCredentials = false;
-                User foundUser = null;
+                bool foundEmail = false;
+                bool passwordCorrect = false;
+
+                User loggedInUser = null;
 
                 // Check email address and password
 
@@ -42,39 +44,46 @@ namespace UserManagement
 
                     if (this.textBoxEmail.Text == user.Email)
                     {
-                        foundUser = user;
+                        foundEmail = true;
 
                         // Check password
                         if (this.textBoxPassword.Text == user.Password)
                         {
-                            validCredentials = true;
-                        }
-                        else
-                        {
-                            MessageBox.Show("Incorrect password. Please try again.\n\n(Your password can be reset by contacting the I.T. department.)", "Password incorrect", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            passwordCorrect = true;
+                            loggedInUser = user;
                         }
 
                         break;
                     }
                 }
 
-                // Warn user if email is not found
+                // foundEmail        passwordCorrect       case
+                //     yes                yes                1. 
+                //     yes                no                 2.
+                //     no                 yes                3.
+                //     no                 no                 3.
 
-                if (foundUser == null)
-                {
-                    MessageBox.Show($"The user: {this.textBoxEmail.Text} does not exist. Please try again.\n\n(If problems persist, please contact the I.T. department.)", "User not found", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                }
+                // Case 1
+                // If email and password are correct - log the user in.
 
-                // Launch ViewUsersForm
-
-                if(validCredentials)
+                if (foundEmail == true && passwordCorrect == true)
                 {
                     this.Visible = false;
 
-                    ViewUsersForm viewUsersForm = new ViewUsersForm(db, foundUser);
+                    ViewUsersForm viewUsersForm = new ViewUsersForm(db, loggedInUser);
                     viewUsersForm.ShowDialog();
 
                     this.Visible = true;
+                }
+                else if(foundEmail == true && passwordCorrect == false)
+                {
+                    // Case 2
+                    MessageBox.Show("Incorrect password. Please try again.\n\n(Your password can be reset by contacting the I.T. department.)", "Password incorrect", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+                else
+                {
+                    // Case 3
+                    MessageBox.Show($"The user: {this.textBoxEmail.Text} does not exist. Please try again.\n\n(If problems persist, please contact the I.T. department.)", "User not found", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
 
                 db.CloseConnection();

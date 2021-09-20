@@ -131,7 +131,10 @@ namespace UserManagement
             this.comboBoxGroup.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.comboBoxGroup.FormattingEnabled = true;
             this.comboBoxGroup.Items.AddRange(new object[] {
-            "I.T."});
+            "I.T.",
+            "Sales",
+            "Human Resources",
+            "Marketing"});
             this.comboBoxGroup.Location = new System.Drawing.Point(80, 183);
             this.comboBoxGroup.Name = "comboBoxGroup";
             this.comboBoxGroup.Size = new System.Drawing.Size(218, 23);
