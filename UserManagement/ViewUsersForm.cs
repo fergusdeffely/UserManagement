@@ -25,12 +25,21 @@ namespace UserManagement
             this.db = db;
         }
 
+        private void ViewUsersForm_Load(object sender, EventArgs e)
+        {
+            RefreshList();
+            RefreshUserDetails(this.listBoxUsers.SelectedItem as User);
+            RefreshControls(this.listBoxUsers.SelectedItem as User);
+
+            // TODO: RefreshLoggedInUserDetails()
+        }
+
         private void buttonEdit_Click(object sender, EventArgs e)
         {
             // TODO: Find currently selected user
             //       Launch the AddEditUserForm in 'Add' mode (passing selected user as param)
 
-            AddEditUserForm editUserForm = new AddEditUserForm();
+            AddEditUserForm editUserForm = new AddEditUserForm(this.db, "edit");
             editUserForm.ShowDialog();
         }
 
@@ -42,7 +51,8 @@ namespace UserManagement
 
         private void buttonAdd_Click(object sender, EventArgs e)
         {
-            // TODO: Launch the AddEditUserForm in 'Add' mode
+            AddEditUserForm editUserForm = new AddEditUserForm(this.db, "add");
+            editUserForm.ShowDialog();
         }
 
         private void buttonDelete_Click(object sender, EventArgs e)
@@ -51,15 +61,6 @@ namespace UserManagement
             //       Prompt to verify Delete
             //       if Yes: Delete from DB
         }        
-
-        private void ViewUsersForm_Load(object sender, EventArgs e)
-        {
-            RefreshList();
-            RefreshUserDetails(this.listBoxUsers.SelectedItem as User);
-
-            // TODO: RefreshControls()
-            // TODO: RefreshLoggedInUserDetails()
-        }
 
         private void RefreshList()
         {
@@ -88,12 +89,36 @@ namespace UserManagement
             this.checkBoxAdministrator.Checked = user.IsAdmin;
         }
 
+        private void RefreshControls(User selectedUser)
+        {
+            if (this.currentUser.IsAdmin)
+            {
+                this.buttonAdd.Enabled = true;
+                this.buttonDelete.Enabled = true;
+                this.buttonEdit.Enabled = true;
+            }
+            else
+            {
+                this.buttonAdd.Enabled = false;
+                this.buttonDelete.Enabled = false;
+                this.buttonEdit.Enabled = false;
+            }
+
+            // User can always edit their own details, but not delete their own profile
+
+            if (selectedUser.Email == this.currentUser.Email)
+            {
+                this.buttonEdit.Enabled = true;
+                this.buttonDelete.Enabled = false;
+            }
+        }
+
         private void listBoxUsers_SelectedIndexChanged(object sender, EventArgs e)
         {
             User selectedUser = this.listBoxUsers.SelectedItem as User;
 
             RefreshUserDetails(selectedUser);
-            // TODO: RefreshControls()
+            RefreshControls(selectedUser);
         }
     }
 }

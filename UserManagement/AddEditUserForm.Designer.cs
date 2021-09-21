@@ -90,7 +90,7 @@ namespace UserManagement
             this.textBoxPassword2.Name = "textBoxPassword2";
             this.textBoxPassword2.Size = new System.Drawing.Size(218, 23);
             this.textBoxPassword2.TabIndex = 22;
-            this.textBoxPassword2.Text = "********";
+            this.textBoxPassword2.UseSystemPasswordChar = true;
             // 
             // labelPassword2
             // 
@@ -112,7 +112,7 @@ namespace UserManagement
             this.textBoxPassword.Name = "textBoxPassword";
             this.textBoxPassword.Size = new System.Drawing.Size(218, 23);
             this.textBoxPassword.TabIndex = 20;
-            this.textBoxPassword.Text = "********";
+            this.textBoxPassword.UseSystemPasswordChar = true;
             // 
             // labelPassword
             // 
@@ -131,10 +131,14 @@ namespace UserManagement
             this.comboBoxGroup.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.comboBoxGroup.FormattingEnabled = true;
             this.comboBoxGroup.Items.AddRange(new object[] {
+            "Accounts",
+            "Development",
             "I.T.",
-            "Sales",
             "Human Resources",
-            "Marketing"});
+            "Marketing",
+            "Operations",
+            "Quality Assurance",
+            "Sales"});
             this.comboBoxGroup.Location = new System.Drawing.Point(80, 183);
             this.comboBoxGroup.Name = "comboBoxGroup";
             this.comboBoxGroup.Size = new System.Drawing.Size(218, 23);
@@ -154,12 +158,12 @@ namespace UserManagement
             // 
             this.textBoxImageLocation.BackColor = System.Drawing.Color.LightSteelBlue;
             this.textBoxImageLocation.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.textBoxImageLocation.Enabled = false;
             this.textBoxImageLocation.ForeColor = System.Drawing.Color.Black;
             this.textBoxImageLocation.Location = new System.Drawing.Point(80, 250);
             this.textBoxImageLocation.Name = "textBoxImageLocation";
             this.textBoxImageLocation.Size = new System.Drawing.Size(340, 23);
             this.textBoxImageLocation.TabIndex = 16;
-            this.textBoxImageLocation.Text = "C:\\Users\\myuser\\OneDrive\\Pictures\\profile-pic.png";
             // 
             // labelImage
             // 
@@ -181,7 +185,6 @@ namespace UserManagement
             this.textBoxName.Name = "textBoxName";
             this.textBoxName.Size = new System.Drawing.Size(218, 23);
             this.textBoxName.TabIndex = 14;
-            this.textBoxName.Text = "Andrea Rossi";
             // 
             // textBoxPhone
             // 
@@ -192,7 +195,6 @@ namespace UserManagement
             this.textBoxPhone.Name = "textBoxPhone";
             this.textBoxPhone.Size = new System.Drawing.Size(218, 23);
             this.textBoxPhone.TabIndex = 13;
-            this.textBoxPhone.Text = "+353 89 2998773";
             // 
             // textBoxEmail
             // 
@@ -203,7 +205,6 @@ namespace UserManagement
             this.textBoxEmail.Name = "textBoxEmail";
             this.textBoxEmail.Size = new System.Drawing.Size(218, 23);
             this.textBoxEmail.TabIndex = 11;
-            this.textBoxEmail.Text = "andrea.rossi@groundworks.com";
             // 
             // pictureBoxUserImage
             // 
@@ -280,6 +281,7 @@ namespace UserManagement
             this.buttonSave.TabIndex = 21;
             this.buttonSave.Text = "&Save";
             this.buttonSave.UseVisualStyleBackColor = true;
+            this.buttonSave.Click += new System.EventHandler(this.buttonSave_Click);
             // 
             // buttonCancel
             // 
@@ -314,6 +316,7 @@ namespace UserManagement
             this.Name = "AddEditUserForm";
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.Text = "Add User";
+            this.Load += new System.EventHandler(this.AddEditUserForm_Load);
             this.panelUserInfo.ResumeLayout(false);
             this.panelUserInfo.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxUserImage)).EndInit();
