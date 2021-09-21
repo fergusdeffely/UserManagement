@@ -30,8 +30,7 @@ namespace UserManagement
             RefreshList();
             RefreshUserDetails(this.listBoxUsers.SelectedItem as User);
             RefreshControls(this.listBoxUsers.SelectedItem as User);
-
-            // TODO: RefreshLoggedInUserDetails()
+            RefreshLoggedInUserDetails();
         }
 
         private void buttonEdit_Click(object sender, EventArgs e)
@@ -53,6 +52,8 @@ namespace UserManagement
         {
             AddEditUserForm editUserForm = new AddEditUserForm(this.db, "add");
             editUserForm.ShowDialog();
+
+            RefreshList();
         }
 
         private void buttonDelete_Click(object sender, EventArgs e)
@@ -111,6 +112,18 @@ namespace UserManagement
                 this.buttonEdit.Enabled = true;
                 this.buttonDelete.Enabled = false;
             }
+        }
+
+        private void RefreshLoggedInUserDetails()
+        {
+            string admin = String.Empty;
+            if(this.currentUser.IsAdmin)
+            {
+                admin = " (Admin)";
+            }
+
+            this.labelCurrentUserName.Text = $"{this.currentUser.Name}{admin}";
+            this.labelCurrentUserEmail.Text = this.currentUser.Email;
         }
 
         private void listBoxUsers_SelectedIndexChanged(object sender, EventArgs e)

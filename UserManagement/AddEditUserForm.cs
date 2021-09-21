@@ -40,7 +40,7 @@ namespace UserManagement
             }
             else if (mode == "edit")
             {
-
+                // Update form fields/controls with information for user being edited
             }
         }
 
@@ -71,7 +71,10 @@ namespace UserManagement
                 User newUser = CreateNewUser();
 
                 UsersDB usersDB = new UsersDB();
-                usersDB.Insert(this.db, newUser);
+                if(usersDB.Insert(this.db, newUser))
+                {
+                    this.Close();
+                }
             }
 
             // TODO:
@@ -81,6 +84,13 @@ namespace UserManagement
             // if(mode == Edit)
             //     Update record in DB
         }
+
+        // here is some text\n
+        // here is the next line\n\nand the next line
+        // 
+        // here is the next line
+        //
+        // and the next line
 
         private bool ValidateEmailAddress()
         {
@@ -102,7 +112,7 @@ namespace UserManagement
             if (isValid == false)
             {
                 MessageBox.Show(message,
-                                "Password mismatch",
+                                "Invalid email address",
                                 MessageBoxButtons.OK,
                                 MessageBoxIcon.Warning);
             }
@@ -132,7 +142,7 @@ namespace UserManagement
                 if(IsValidPhoneNumberCharacter(ch) == false)
                 {
                     MessageBox.Show("Phone numbers must be composed of digits, spaces and/or the characters: + ( ) -",
-                                    "Password mismatch",
+                                    "Invalid phone number",
                                     MessageBoxButtons.OK,
                                     MessageBoxIcon.Warning);
                     return false;

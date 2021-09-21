@@ -46,8 +46,8 @@ namespace UserManagement
             this.textBoxName = new System.Windows.Forms.TextBox();
             this.buttonDelete = new System.Windows.Forms.Button();
             this.buttonEdit = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
+            this.labelCurrentUserName = new System.Windows.Forms.Label();
+            this.labelCurrentUserEmail = new System.Windows.Forms.Label();
             this.panelLoggedInUser = new System.Windows.Forms.Panel();
             this.buttonLogout = new System.Windows.Forms.Button();
             this.panelUserInfo = new System.Windows.Forms.Panel();
@@ -234,33 +234,33 @@ namespace UserManagement
             this.buttonEdit.UseVisualStyleBackColor = true;
             this.buttonEdit.Click += new System.EventHandler(this.buttonEdit_Click);
             // 
-            // label1
+            // labelCurrentUserName
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Segoe UI", 7F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label1.Location = new System.Drawing.Point(16, 12);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(98, 12);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Tom Walsh (Admin)";
+            this.labelCurrentUserName.AutoSize = true;
+            this.labelCurrentUserName.Font = new System.Drawing.Font("Segoe UI", 7F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.labelCurrentUserName.Location = new System.Drawing.Point(16, 12);
+            this.labelCurrentUserName.Name = "labelCurrentUserName";
+            this.labelCurrentUserName.Size = new System.Drawing.Size(98, 12);
+            this.labelCurrentUserName.TabIndex = 0;
+            this.labelCurrentUserName.Text = "Tom Walsh (Admin)";
             // 
-            // label2
+            // labelCurrentUserEmail
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Segoe UI", 7F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label2.Location = new System.Drawing.Point(16, 30);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(148, 12);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "tom.walsh@groundworks.com";
+            this.labelCurrentUserEmail.AutoSize = true;
+            this.labelCurrentUserEmail.Font = new System.Drawing.Font("Segoe UI", 7F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.labelCurrentUserEmail.Location = new System.Drawing.Point(16, 30);
+            this.labelCurrentUserEmail.Name = "labelCurrentUserEmail";
+            this.labelCurrentUserEmail.Size = new System.Drawing.Size(148, 12);
+            this.labelCurrentUserEmail.TabIndex = 1;
+            this.labelCurrentUserEmail.Text = "tom.walsh@groundworks.com";
             // 
             // panelLoggedInUser
             // 
             this.panelLoggedInUser.BackColor = System.Drawing.Color.LightSteelBlue;
             this.panelLoggedInUser.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panelLoggedInUser.Controls.Add(this.buttonLogout);
-            this.panelLoggedInUser.Controls.Add(this.label2);
-            this.panelLoggedInUser.Controls.Add(this.label1);
+            this.panelLoggedInUser.Controls.Add(this.labelCurrentUserEmail);
+            this.panelLoggedInUser.Controls.Add(this.labelCurrentUserName);
             this.panelLoggedInUser.Location = new System.Drawing.Point(397, 343);
             this.panelLoggedInUser.Name = "panelLoggedInUser";
             this.panelLoggedInUser.Size = new System.Drawing.Size(308, 57);
@@ -353,8 +353,8 @@ namespace UserManagement
         private System.Windows.Forms.TextBox textBoxName;
         private System.Windows.Forms.Button buttonDelete;
         private System.Windows.Forms.Button buttonEdit;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label labelCurrentUserName;
+        private System.Windows.Forms.Label labelCurrentUserEmail;
         private System.Windows.Forms.Panel panelLoggedInUser;
         private System.Windows.Forms.Button buttonLogout;
         private System.Windows.Forms.Panel panelUserInfo;
