@@ -1,12 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Collections.Generic;
 
 using UserManagementDB;
 
@@ -79,18 +74,30 @@ namespace UserManagement
 
             // TODO:
 
-            // if(mode == Add)
-            //     Insert new record in DB
             // if(mode == Edit)
             //     Update record in DB
         }
 
-        // here is some text\n
-        // here is the next line\n\nand the next line
-        // 
-        // here is the next line
-        //
-        // and the next line
+
+        private bool IsUniqueEmailAddress(string email)
+        {
+            bool isUnique = true;
+
+            // Get list of all users from database
+            UsersDB usersDB = new UsersDB();
+            List<User> users = usersDB.GetUsers(this.db);
+
+            foreach(User user in users)
+            {
+                if(user.Email == email)
+                {
+                    isUnique = false;
+                    break;
+                }
+            }
+
+            return isUnique;
+        }
 
         private bool ValidateEmailAddress()
         {
@@ -115,6 +122,15 @@ namespace UserManagement
                                 "Invalid email address",
                                 MessageBoxButtons.OK,
                                 MessageBoxIcon.Warning);
+            }
+            else if(IsUniqueEmailAddress(this.textBoxEmail.Text) == false)
+            {
+                MessageBox.Show($"A user with the email address {this.textBoxEmail.Text} already exists.\n\nEmail addresses must be unique.",
+                                "Email address exists",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Warning);
+
+                isValid = false;
             }
 
             return isValid;
@@ -197,9 +213,7 @@ namespace UserManagement
         private void buttonBrowseImage_Click(object sender, EventArgs e)
         {
             // Select new ImageFile using OpenFileDialog
-            // Update PictureBox to display new Image
 
-            /*
             string picturesPath = Environment.GetFolderPath(Environment.SpecialFolder.MyPictures);
 
             OpenFileDialog browseImageFileDialog = new OpenFileDialog();
@@ -210,7 +224,10 @@ namespace UserManagement
 
             browseImageFileDialog.ShowDialog();
 
+            // Get the filename of the selected image file
             string pictureFilename = browseImageFileDialog.FileName;
+
+            // Update PictureBox to display new Image
             Image userImage = Image.FromFile(pictureFilename);
             this.pictureBoxUserImage.Image = userImage;
 
@@ -225,7 +242,8 @@ namespace UserManagement
             {
                 this.pictureBoxUserImage.SizeMode = PictureBoxSizeMode.CenterImage;
             }
-            */
+
+            this.textBoxImageLocation.Text = pictureFilename;
         }
     }
 }

@@ -162,6 +162,7 @@ namespace UserManagement
             this.textBoxImageLocation.ForeColor = System.Drawing.Color.Black;
             this.textBoxImageLocation.Location = new System.Drawing.Point(80, 250);
             this.textBoxImageLocation.Name = "textBoxImageLocation";
+            this.textBoxImageLocation.ReadOnly = true;
             this.textBoxImageLocation.Size = new System.Drawing.Size(340, 23);
             this.textBoxImageLocation.TabIndex = 16;
             // 
