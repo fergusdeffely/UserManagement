@@ -43,13 +43,20 @@ namespace UserManagement
         {
             // Validation - check formats of email, phone and password
 
-            if (ValidateEmailAddress() == false)
+            if (ValidateEmailAddressFormat() == false)
             {
                 // Email is not valid - return without doing anything else
                 return;
             }
 
-            if(ValidatePhone() == false)
+            // Validate Email uniqueness
+            if (ValidateEmailAddressUnique() == false)
+            {
+                // Email address already exists in database - return without doing anything else
+                return;
+            }
+
+            if (ValidatePhone() == false)
             {
                 // Phone number is not valid - return without doing anything else
                 return;
@@ -99,7 +106,22 @@ namespace UserManagement
             return isUnique;
         }
 
-        private bool ValidateEmailAddress()
+        private bool ValidateEmailAddressUnique()
+        {
+            if (IsUniqueEmailAddress(this.textBoxEmail.Text) == false)
+            {
+                MessageBox.Show($"A user with the email address {this.textBoxEmail.Text} already exists.\n\nEmail addresses must be unique.",
+                                "Email address exists",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Warning);
+
+                return false;
+            }
+
+            return true;
+        }
+
+        private bool ValidateEmailAddressFormat()
         {
             bool isValid = true;
             string message = $"There's a problem with your email address: {this.textBoxEmail.Text}\n\nEmail addresses...\n\n";
@@ -122,15 +144,6 @@ namespace UserManagement
                                 "Invalid email address",
                                 MessageBoxButtons.OK,
                                 MessageBoxIcon.Warning);
-            }
-            else if(IsUniqueEmailAddress(this.textBoxEmail.Text) == false)
-            {
-                MessageBox.Show($"A user with the email address {this.textBoxEmail.Text} already exists.\n\nEmail addresses must be unique.",
-                                "Email address exists",
-                                MessageBoxButtons.OK,
-                                MessageBoxIcon.Warning);
-
-                isValid = false;
             }
 
             return isValid;
