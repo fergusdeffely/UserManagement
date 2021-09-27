@@ -28,6 +28,10 @@ namespace UserManagement
         private void ViewUsersForm_Load(object sender, EventArgs e)
         {
             RefreshList();
+
+            // Select the currently logged in user
+            this.listBoxUsers.SelectedIndex = IndexOfUser(this.currentUser);
+
             RefreshUserDetails(this.listBoxUsers.SelectedItem as User);
             RefreshControls(this.listBoxUsers.SelectedItem as User);
             RefreshLoggedInUserDetails();
@@ -35,17 +39,15 @@ namespace UserManagement
 
         private void buttonEdit_Click(object sender, EventArgs e)
         {
-            // TODO: Find currently selected user
-            //       Launch the AddEditUserForm in 'Add' mode (passing selected user as param)
+            User user = this.listBoxUsers.SelectedItem as User;
 
-            AddEditUserForm editUserForm = new AddEditUserForm(this.db, "edit");
+            AddEditUserForm editUserForm = new AddEditUserForm(this.db, user, "edit");
             editUserForm.ShowDialog();
         }
 
         private void buttonLogout_Click(object sender, EventArgs e)
         {
-            // TODO: Close this form
-            //       Reset currentUser on LoginForm
+            this.Close();
         }
 
         private void buttonAdd_Click(object sender, EventArgs e)
@@ -58,10 +60,57 @@ namespace UserManagement
 
         private void buttonDelete_Click(object sender, EventArgs e)
         {
-            // TODO: Find currently selected user
-            //       Prompt to verify Delete
-            //       if Yes: Delete from DB
-        }        
+            //int index = this.listBoxUsers.SelectedIndex;
+
+            User user = this.listBoxUsers.SelectedItem as User;
+
+            DialogResult result = MessageBox.Show($"You are about to delete the user:\n\n{user.Name}\n{user.Email}\n\nAre you sure?",
+                                                   "Email address exists",
+                                                   MessageBoxButtons.YesNo,
+                                                   MessageBoxIcon.Warning);
+
+            if(result == DialogResult.Yes)
+            {
+                UsersDB usersDB = new UsersDB();
+                usersDB.Delete(this.db, user.Email);
+
+                RefreshList();
+
+                if(this.listBoxUsers.Items.Count > 0)
+                {
+                    this.listBoxUsers.SelectedIndex = 0;
+                }
+            }
+        }
+
+        private int IndexOfUser(User user)
+        {
+            bool emailMatches = false;
+            int index = this.listBoxUsers.FindString(user.Name);
+
+            while(emailMatches == false)
+            {
+                if(index >= 0)
+                {
+                    User candidate = this.listBoxUsers.Items[index] as User;
+                    if(user.Email == candidate.Email)
+                    {
+                        emailMatches = true;
+                    }
+                    else
+                    {
+                        index = this.listBoxUsers.FindString(user.Name, index);
+                    }
+                }
+                else
+                {
+                    return -1;
+                }
+            }
+
+            return index;
+
+        }
 
         private void RefreshList()
         {
@@ -72,10 +121,6 @@ namespace UserManagement
 
             this.listBoxUsers.Items.Clear();
             this.listBoxUsers.Items.AddRange(userList.ToArray());
-            
-            int currentUserIndex = this.listBoxUsers.FindString(this.currentUser.ToString());
-
-            this.listBoxUsers.SelectedIndex = currentUserIndex;
         }
 
         // Populate the User Details fields given a User object.

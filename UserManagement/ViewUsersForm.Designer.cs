@@ -162,7 +162,7 @@ namespace UserManagement
             this.buttonAdd.Location = new System.Drawing.Point(27, 295);
             this.buttonAdd.Name = "buttonAdd";
             this.buttonAdd.Size = new System.Drawing.Size(88, 30);
-            this.buttonAdd.TabIndex = 10;
+            this.buttonAdd.TabIndex = 2;
             this.buttonAdd.Text = "Add...";
             this.buttonAdd.UseVisualStyleBackColor = true;
             this.buttonAdd.Click += new System.EventHandler(this.buttonAdd_Click);
@@ -220,16 +220,17 @@ namespace UserManagement
             this.buttonDelete.Location = new System.Drawing.Point(121, 295);
             this.buttonDelete.Name = "buttonDelete";
             this.buttonDelete.Size = new System.Drawing.Size(88, 30);
-            this.buttonDelete.TabIndex = 15;
+            this.buttonDelete.TabIndex = 3;
             this.buttonDelete.Text = "Delete";
             this.buttonDelete.UseVisualStyleBackColor = true;
+            this.buttonDelete.Click += new System.EventHandler(this.buttonDelete_Click);
             // 
             // buttonEdit
             // 
             this.buttonEdit.Location = new System.Drawing.Point(20, 196);
             this.buttonEdit.Name = "buttonEdit";
             this.buttonEdit.Size = new System.Drawing.Size(88, 30);
-            this.buttonEdit.TabIndex = 16;
+            this.buttonEdit.TabIndex = 1;
             this.buttonEdit.Text = "Edit...";
             this.buttonEdit.UseVisualStyleBackColor = true;
             this.buttonEdit.Click += new System.EventHandler(this.buttonEdit_Click);
@@ -271,7 +272,7 @@ namespace UserManagement
             this.buttonLogout.Location = new System.Drawing.Point(208, 15);
             this.buttonLogout.Name = "buttonLogout";
             this.buttonLogout.Size = new System.Drawing.Size(88, 30);
-            this.buttonLogout.TabIndex = 2;
+            this.buttonLogout.TabIndex = 4;
             this.buttonLogout.Text = "Logout";
             this.buttonLogout.UseVisualStyleBackColor = true;
             this.buttonLogout.Click += new System.EventHandler(this.buttonLogout_Click);

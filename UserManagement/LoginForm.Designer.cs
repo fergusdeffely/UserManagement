@@ -43,7 +43,7 @@ namespace UserManagement
             this.buttonLogin.Location = new System.Drawing.Point(163, 197);
             this.buttonLogin.Name = "buttonLogin";
             this.buttonLogin.Size = new System.Drawing.Size(94, 39);
-            this.buttonLogin.TabIndex = 0;
+            this.buttonLogin.TabIndex = 2;
             this.buttonLogin.Text = "Login";
             this.buttonLogin.UseVisualStyleBackColor = true;
             this.buttonLogin.Click += new System.EventHandler(this.buttonLogin_Click);
@@ -53,7 +53,7 @@ namespace UserManagement
             this.buttonExit.Location = new System.Drawing.Point(263, 197);
             this.buttonExit.Name = "buttonExit";
             this.buttonExit.Size = new System.Drawing.Size(94, 39);
-            this.buttonExit.TabIndex = 1;
+            this.buttonExit.TabIndex = 3;
             this.buttonExit.Text = "Exit";
             this.buttonExit.UseVisualStyleBackColor = true;
             // 
@@ -91,7 +91,7 @@ namespace UserManagement
             this.textBoxEmail.Location = new System.Drawing.Point(153, 102);
             this.textBoxEmail.Name = "textBoxEmail";
             this.textBoxEmail.Size = new System.Drawing.Size(198, 23);
-            this.textBoxEmail.TabIndex = 5;
+            this.textBoxEmail.TabIndex = 0;
             // 
             // textBoxPassword
             // 
@@ -99,7 +99,7 @@ namespace UserManagement
             this.textBoxPassword.Name = "textBoxPassword";
             this.textBoxPassword.PasswordChar = '*';
             this.textBoxPassword.Size = new System.Drawing.Size(198, 23);
-            this.textBoxPassword.TabIndex = 6;
+            this.textBoxPassword.TabIndex = 1;
             // 
             // LoginForm
             // 

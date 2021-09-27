@@ -89,7 +89,7 @@ namespace UserManagement
             this.textBoxPassword2.Location = new System.Drawing.Point(80, 149);
             this.textBoxPassword2.Name = "textBoxPassword2";
             this.textBoxPassword2.Size = new System.Drawing.Size(218, 23);
-            this.textBoxPassword2.TabIndex = 22;
+            this.textBoxPassword2.TabIndex = 4;
             this.textBoxPassword2.UseSystemPasswordChar = true;
             // 
             // labelPassword2
@@ -111,7 +111,7 @@ namespace UserManagement
             this.textBoxPassword.Location = new System.Drawing.Point(80, 116);
             this.textBoxPassword.Name = "textBoxPassword";
             this.textBoxPassword.Size = new System.Drawing.Size(218, 23);
-            this.textBoxPassword.TabIndex = 20;
+            this.textBoxPassword.TabIndex = 3;
             this.textBoxPassword.UseSystemPasswordChar = true;
             // 
             // labelPassword
@@ -142,14 +142,14 @@ namespace UserManagement
             this.comboBoxGroup.Location = new System.Drawing.Point(80, 183);
             this.comboBoxGroup.Name = "comboBoxGroup";
             this.comboBoxGroup.Size = new System.Drawing.Size(218, 23);
-            this.comboBoxGroup.TabIndex = 18;
+            this.comboBoxGroup.TabIndex = 5;
             // 
             // buttonBrowseImage
             // 
             this.buttonBrowseImage.Location = new System.Drawing.Point(427, 249);
             this.buttonBrowseImage.Name = "buttonBrowseImage";
             this.buttonBrowseImage.Size = new System.Drawing.Size(31, 24);
-            this.buttonBrowseImage.TabIndex = 17;
+            this.buttonBrowseImage.TabIndex = 7;
             this.buttonBrowseImage.Text = "...";
             this.buttonBrowseImage.UseVisualStyleBackColor = true;
             this.buttonBrowseImage.Click += new System.EventHandler(this.buttonBrowseImage_Click);
@@ -185,7 +185,7 @@ namespace UserManagement
             this.textBoxName.Location = new System.Drawing.Point(80, 51);
             this.textBoxName.Name = "textBoxName";
             this.textBoxName.Size = new System.Drawing.Size(218, 23);
-            this.textBoxName.TabIndex = 14;
+            this.textBoxName.TabIndex = 1;
             // 
             // textBoxPhone
             // 
@@ -195,7 +195,7 @@ namespace UserManagement
             this.textBoxPhone.Location = new System.Drawing.Point(80, 83);
             this.textBoxPhone.Name = "textBoxPhone";
             this.textBoxPhone.Size = new System.Drawing.Size(218, 23);
-            this.textBoxPhone.TabIndex = 13;
+            this.textBoxPhone.TabIndex = 2;
             // 
             // textBoxEmail
             // 
@@ -205,7 +205,7 @@ namespace UserManagement
             this.textBoxEmail.Location = new System.Drawing.Point(80, 19);
             this.textBoxEmail.Name = "textBoxEmail";
             this.textBoxEmail.Size = new System.Drawing.Size(218, 23);
-            this.textBoxEmail.TabIndex = 11;
+            this.textBoxEmail.TabIndex = 0;
             // 
             // pictureBoxUserImage
             // 
@@ -237,7 +237,7 @@ namespace UserManagement
             this.checkBoxAdministrator.Location = new System.Drawing.Point(10, 218);
             this.checkBoxAdministrator.Name = "checkBoxAdministrator";
             this.checkBoxAdministrator.Size = new System.Drawing.Size(109, 19);
-            this.checkBoxAdministrator.TabIndex = 4;
+            this.checkBoxAdministrator.TabIndex = 6;
             this.checkBoxAdministrator.Text = "Administrator :";
             this.checkBoxAdministrator.UseVisualStyleBackColor = true;
             // 
@@ -279,7 +279,7 @@ namespace UserManagement
             this.buttonSave.Location = new System.Drawing.Point(38, 411);
             this.buttonSave.Name = "buttonSave";
             this.buttonSave.Size = new System.Drawing.Size(84, 35);
-            this.buttonSave.TabIndex = 21;
+            this.buttonSave.TabIndex = 8;
             this.buttonSave.Text = "&Save";
             this.buttonSave.UseVisualStyleBackColor = true;
             this.buttonSave.Click += new System.EventHandler(this.buttonSave_Click);
@@ -289,7 +289,7 @@ namespace UserManagement
             this.buttonCancel.Location = new System.Drawing.Point(146, 411);
             this.buttonCancel.Name = "buttonCancel";
             this.buttonCancel.Size = new System.Drawing.Size(84, 35);
-            this.buttonCancel.TabIndex = 22;
+            this.buttonCancel.TabIndex = 9;
             this.buttonCancel.Text = "&Cancel";
             this.buttonCancel.UseVisualStyleBackColor = true;
             // 

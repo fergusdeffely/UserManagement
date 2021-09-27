@@ -11,6 +11,10 @@ namespace UserManagement
     {
         DBConnection db = null;
         string mode = String.Empty;
+        User editUser = null; // Will store user to be edited in edit mode
+
+        // DBConnection string 
+        // DBConnection User string 
 
         public AddEditUserForm(DBConnection db, string mode)
         {
@@ -19,6 +23,11 @@ namespace UserManagement
             this.db = db;
             // mode is either "add" or "edit"
             this.mode = mode;
+        }
+
+        public AddEditUserForm(DBConnection db, User editUser, string mode) : this(db, mode) 
+        {
+            this.editUser = editUser;
         }
 
         // TODO: Add Form_Load event handler
@@ -78,11 +87,10 @@ namespace UserManagement
                     this.Close();
                 }
             }
-
-            // TODO:
-
-            // if(mode == Edit)
-            //     Update record in DB
+            else
+            {
+                //     Update record in DB
+            }
         }
 
 
@@ -206,8 +214,6 @@ namespace UserManagement
             // If we get to here the password is valid
             return true;
         }
-
-
 
         private User CreateNewUser()
         {
