@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Drawing;
 using System.Windows.Forms;
 using System.Collections.Generic;
@@ -30,12 +31,6 @@ namespace UserManagement
             this.editUser = editUser;
         }
 
-        // TODO: Add Form_Load event handler
-        //       if(mode == Add)
-        //          set default control settings (dropdown, admin status, default image, etc)
-        //       if(mode == Edit)
-        //          update form for current user
-
         private void AddEditUserForm_Load(object sender, EventArgs e)
         {
             if (mode == "add")
@@ -45,6 +40,16 @@ namespace UserManagement
             else if (mode == "edit")
             {
                 // Update form fields/controls with information for user being edited
+                this.textBoxEmail.Text = this.editUser.Email;
+                this.textBoxName.Text = this.editUser.Name;
+                this.textBoxPhone.Text = this.editUser.Phone;
+                this.textBoxPassword.Text = this.editUser.Password;
+                this.textBoxPassword2.Text = this.editUser.Password;
+                this.comboBoxGroup.Text = this.editUser.Group;
+                this.checkBoxAdministrator.Checked = this.editUser.IsAdmin;
+                this.textBoxImageLocation.Text = this.editUser.Image;
+
+                // TODO: Call new RefreshProfileImage method
             }
         }
 
@@ -89,12 +94,18 @@ namespace UserManagement
             }
             else
             {
-                //     Update record in DB
+                User updatedUser = CreateNewUser();
+
+                UsersDB usersDB = new UsersDB();
+                if (usersDB.Update(this.db, editUser.Email, updatedUser))
+                {
+                    this.Close();
+                }
             }
         }
 
 
-        private bool IsUniqueEmailAddress(string email)
+        private bool IsUniqueEmailAddress(string currentEmail, string newEmail)
         {
             bool isUnique = true;
 
@@ -104,7 +115,7 @@ namespace UserManagement
 
             foreach(User user in users)
             {
-                if(user.Email == email)
+                if(user.Email != currentEmail && user.Email == newEmail)
                 {
                     isUnique = false;
                     break;
@@ -116,7 +127,14 @@ namespace UserManagement
 
         private bool ValidateEmailAddressUnique()
         {
-            if (IsUniqueEmailAddress(this.textBoxEmail.Text) == false)
+            string currentEmail = String.Empty;
+
+            if(mode == "edit")
+            {
+                currentEmail = this.editUser.Email;
+            }
+
+            if (IsUniqueEmailAddress(currentEmail, this.textBoxEmail.Text) == false)
             {
                 MessageBox.Show($"A user with the email address {this.textBoxEmail.Text} already exists.\n\nEmail addresses must be unique.",
                                 "Email address exists",
@@ -243,26 +261,36 @@ namespace UserManagement
 
             browseImageFileDialog.ShowDialog();
 
+            // TODO: Move the following out into its own method (RefreshProfileImage)
+
             // Get the filename of the selected image file
             string pictureFilename = browseImageFileDialog.FileName;
 
-            // Update PictureBox to display new Image
-            Image userImage = Image.FromFile(pictureFilename);
-            this.pictureBoxUserImage.Image = userImage;
+            if(File.Exists(pictureFilename))
+            {
+                // Update PictureBox to display new Image
+                Image userImage = Image.FromFile(pictureFilename);
+                this.pictureBoxUserImage.Image = userImage;
 
-            // If user image is larger than PictureBox, then Zoom out,
-            // otherwise, center the image in the frame
-            if(userImage.Width > pictureBoxUserImage.ClientSize.Width || 
-               userImage.Height > pictureBoxUserImage.ClientSize.Height)
-            {
-                this.pictureBoxUserImage.SizeMode = PictureBoxSizeMode.Zoom;
-            }
-            else
-            {
-                this.pictureBoxUserImage.SizeMode = PictureBoxSizeMode.CenterImage;
+                // If user image is larger than PictureBox, then Zoom out,
+                // otherwise, center the image in the frame
+                if (userImage.Width > pictureBoxUserImage.ClientSize.Width ||
+                   userImage.Height > pictureBoxUserImage.ClientSize.Height)
+                {
+                    this.pictureBoxUserImage.SizeMode = PictureBoxSizeMode.Zoom;
+                }
+                else
+                {
+                    this.pictureBoxUserImage.SizeMode = PictureBoxSizeMode.CenterImage;
+                }
             }
 
             this.textBoxImageLocation.Text = pictureFilename;
+        }
+
+        private void buttonCancel_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

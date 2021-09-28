@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -43,6 +44,8 @@ namespace UserManagement
 
             AddEditUserForm editUserForm = new AddEditUserForm(this.db, user, "edit");
             editUserForm.ShowDialog();
+
+            RefreshList();
         }
 
         private void buttonLogout_Click(object sender, EventArgs e)
@@ -60,8 +63,6 @@ namespace UserManagement
 
         private void buttonDelete_Click(object sender, EventArgs e)
         {
-            //int index = this.listBoxUsers.SelectedIndex;
-
             User user = this.listBoxUsers.SelectedItem as User;
 
             DialogResult result = MessageBox.Show($"You are about to delete the user:\n\n{user.Name}\n{user.Email}\n\nAre you sure?",
@@ -133,6 +134,31 @@ namespace UserManagement
             this.textBoxPhone.Text = user.Phone;
             this.textBoxGroup.Text = user.Group;
             this.checkBoxAdministrator.Checked = user.IsAdmin;
+
+            Image userImage = null;
+            
+            if (File.Exists(user.Image))
+            {
+                userImage = Image.FromFile(user.Image);
+            }
+            else
+            {
+                userImage = Image.FromFile(@"C:\Users\toshiba\source\repos\UserManagement\UserManagement\default-user-image.png");
+            }
+
+            this.pictureBoxUserImage.Image = userImage;
+
+            // If user image is larger than PictureBox, then Zoom out,
+            // otherwise, center the image in the frame
+            if (userImage.Width > pictureBoxUserImage.ClientSize.Width ||
+                userImage.Height > pictureBoxUserImage.ClientSize.Height)
+            {
+                this.pictureBoxUserImage.SizeMode = PictureBoxSizeMode.Zoom;
+            }
+            else
+            {
+                this.pictureBoxUserImage.SizeMode = PictureBoxSizeMode.CenterImage;
+            }            
         }
 
         private void RefreshControls(User selectedUser)

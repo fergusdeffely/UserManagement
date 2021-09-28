@@ -128,6 +128,7 @@ namespace UserManagement
             // comboBoxGroup
             // 
             this.comboBoxGroup.BackColor = System.Drawing.Color.LightSteelBlue;
+            this.comboBoxGroup.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxGroup.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.comboBoxGroup.FormattingEnabled = true;
             this.comboBoxGroup.Items.AddRange(new object[] {
@@ -292,6 +293,7 @@ namespace UserManagement
             this.buttonCancel.TabIndex = 9;
             this.buttonCancel.Text = "&Cancel";
             this.buttonCancel.UseVisualStyleBackColor = true;
+            this.buttonCancel.Click += new System.EventHandler(this.buttonCancel_Click);
             // 
             // labelUserInfo
             // 
